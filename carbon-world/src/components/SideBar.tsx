@@ -5,8 +5,8 @@ import NavItems from "@/components/NavItems";
 
 function SideBar() {
     return (
-        <div className="flex  flex-col h-screen w-[18.5%] bg-[#202020] ">
-            <div className="text-center py-[58px] px-[96px]">
+        <div className="flex  flex-col h-screen  bg-[#0b090a] ">
+            <div className=" py-[58px] px-[96px]">
                 CarbonCoin
             </div>
 

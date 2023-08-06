@@ -3,7 +3,7 @@ import React from 'react';
 
 function Profile() {
     return (
-        <div className="flex flex-col justify-center items-center gap-4">
+        <div className="flex flex-col  items-center gap-4">
             <div   className="w-[100px] h-[100px] rounded-full  bg-white" >
 
             </div>
