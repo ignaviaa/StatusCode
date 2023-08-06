@@ -8,31 +8,31 @@ function Page() {
     return (
         <>
 
-            <div className="bg-[#333533] flex flex-col md:flex-row h-screen">
-                <div className="w-full md:w-[18.5%]">
+            <div className="  flex flex-col md:flex-row h-screen">
+                <div className="w-full md:w-[20%]">
                     <SideBar />
                 </div>
-                <div className="bg-[#333533] w-screen h-screen flex flex-col">
-                    <div className="flex items-center justify-between bg-gray-800 p-4">
-                        <span className="text-white text-lg font-semibold">Dashboard</span>
-                        <div className="flex items-center">
+                <div className=" w-screen h-screen flex flex-col">
+                    <div className="flex items-center justify-between p-10">
+                        <span className="text-white text-[25px] font-semibold font-Poppins ">Dashboard</span>
+                        <div className="flex items-center bg-black">
                             <SearchBar/>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-8 p-8">
-                        <div className="flex justify-center items-center">
+                    <div className="grid grid-cols-3">
+                        <div className="flex justify-center items-center m-3">
                             <AddButton />
                         </div>
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center m-3">
                             <Cards />
                         </div>
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center m-3">
                             <Cards />
                         </div>
-                        <div className="flex justify-center items-center">
+                        {/* <div className="flex justify-center items-center">
                             <Cards />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 

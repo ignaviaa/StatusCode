@@ -1,18 +1,18 @@
 import React from 'react';
-import { FiSearch } from 'react-icons/fi';
+import {RiSearchFill} from "react-icons/ri"
 
 const SearchBar = () => {
     return (
-        <div className="max-w-md mx-auto">
-            <div className="relative text-gray-600">
-                <button type="submit" className="absolute left-0 top-0 mt-3 ml-4">
-                    <FiSearch className="h-4 w-4" />
+        <div className="max-w-md mx-auto" >
+            <div className="relative text-gray-800">
+                <button type="submit" className="absolute left-0 top-0 mt-3 ml-6">
+                    <RiSearchFill className="h-5 w-5 fill-white" />
                 </button>
                 <input
                     type="search"
                     name="search"
                     placeholder="Search projects..."
-                    className="bg-white h-10 pl-10 pr-5 rounded-full text-sm focus:outline-none"
+                    className="h-10 pl-[3.5rem] pr-10 items-center rounded-full text-sm font-Poppins bg-inherit m-auto border border-white"
                 />
             </div>
         </div>
