@@ -10,7 +10,7 @@ function Profile() {
             <div>
                 Name
             </div>
-            <button className=" border border-[#5CC94D] text-[#D9D9D9] rounded-[10vh] p-2 w-[90px] hover:border-[#79EC69] focus:outline-none  ">Edit</button>
+            <button className=" border border-white text-[#D9D9D9] rounded-[10vh] p-2 w-[90px] hover:bg-[#5CC94D] hover:border-transparent hover:text-black focus:outline-none  ">Edit</button>
         </div>
 
     );

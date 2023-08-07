@@ -34,7 +34,7 @@ function Page() {
                     
                     </div>
                      <div className="grid grid-col-1 grid-flow-col mx-auto ">
-                     <div className="">
+                     <div>
                             <Category />
                         </div>
                         <div className="relative left-[2vh]">

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Cards() {
     return (
-        <><div className="max-w-sm rounded-[1.5rem] overflow-hidden shadow-lg bg-[#202020]">
+        <><div className="max-w-sm rounded-[1.5rem] overflow-hidden shadow-lg bg-[#202123]">
             <div className="relative w-full h-0" style={{ paddingBottom: '42%' }}>
                 <img
                     className="absolute inset-0 w-full h-full object-cover"
