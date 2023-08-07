@@ -12,7 +12,7 @@ const SearchBar = () => {
                     type="search"
                     name="search"
                     placeholder="Search projects..."
-                    className="h-10 pl-[3.5rem] pr-10 items-center rounded-full text-sm font-Poppins bg-inherit m-auto border border-white"
+                    className="h-10 pl-[3.5rem] pr-10 items-center rounded-full text-sm font-Poppins bg-inherit m-auto border border-white w-[30vw]"
                 />
             </div>
         </div>
