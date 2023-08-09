@@ -3,7 +3,7 @@ import DashBoardNav from "@/components/DashBoardNav";
 import Cards from "@/components/Cards";
 import AddButton from "@/components/AddButton";
 import SearchBar from "@/components/SearchBar";
-import LineChart from "@/components/BarChart";
+import BarChart from "@/components/BarChart";
 import Category from "@/components/Category";
 
 function Page() {
@@ -38,14 +38,14 @@ function Page() {
                             <Category />
                         </div>
                         <div className="relative left-[2vh]">
-                        <LineChart/>
+                        <BarChart/>
                         </div>
                       
                     </div> 
                     <div className="flex items-center p-10 py-5 mx-5">
                     <span className="text-white text-[25px] font-semibold font-Poppins ">Projects</span>
                     </div>
-                    <div className="grid grid-cols-3 gap-10 m-auto w-[75vw] space-x">
+                    <div className="grid grid-cols-3 gap-10 m-auto w-[75vw] space-x mb-10">
                         <div className="w-[25vw]  ">
                             <AddButton />
                         </div>
