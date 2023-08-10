@@ -18,11 +18,7 @@ function Page() {
                   <div>
                     <BarChart />
                   </div>
-
-                  
-
                   </div>
-                 
                   </div>
                   
                   

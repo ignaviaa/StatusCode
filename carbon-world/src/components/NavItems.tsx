@@ -11,7 +11,7 @@ function NavItems() {
         { icon: <BiSolidDashboard />, label: 'Dashboard', href: '/dashboard' },
         { icon: <AiOutlineTransaction />, label: 'Transaction', href: '/transaction' },
         { icon: <SlGraph />, label: 'Analytics', href: '/analytics' },
-        { icon: <BiLogOut />, label: 'Log Out', href: '/' },
+        { icon: <BiLogOut />, label: 'Log Out', href: '/home' },
     ]);
 
     return (
