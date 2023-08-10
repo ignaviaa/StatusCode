@@ -29,7 +29,15 @@
     "react-icons": "^4.10.1",
     "react-pro-sidebar": "^1.1.0-alpha.1",
     "tailwindcss": "3.3.3",
+<<<<<<< HEAD
     "typescript": "5.1.6",
     "zustand": "^4.4.1"
+=======
+    "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.1"
+>>>>>>> c6a2970 (Made changed to the test branch)
   }
 }
