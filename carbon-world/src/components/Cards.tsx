@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
+const x = "Test git"
+
 function Cards() {
   return (
     <>
