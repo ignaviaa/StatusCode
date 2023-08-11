@@ -1,18 +1,16 @@
-import React from 'react';
+import React from "react";
 
 function Transaction() {
-    return (
-        <><div className=" rounded-[1rem] shadow-lg bg-[#202123] px-5 py-4 w-[75vw]">
-                <div className="text-lg mb-2 text-white">Received from Abc</div>
-                <p className="text-[#7b7b7b] text-base text-[12px]">
-                    Today at 2:00 PM.
-                </p>
-            </div>
-
-
-        </>
-
-    );
+  return (
+    <>
+      <div className="w-[75vw] rounded-[1rem] bg-[#202123] px-5 py-4 shadow-lg">
+        <div className="mb-2 text-lg text-white">Received from Abc</div>
+        <p className="text-[12px] text-base text-[#7b7b7b]">
+          Today at 2:00 PM.
+        </p>
+      </div>
+    </>
+  );
 }
 
 export default Transaction;

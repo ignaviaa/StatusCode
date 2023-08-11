@@ -2,8 +2,8 @@ import React from "react";
 
 const AddButton = () => {
   return (
-    <button className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-[#5CC94D] text-black flex items-center justify-center w-full h-full">
-      <span className="flex items-center justify-center text-3xl text-white border-white border-2 w-10 h-10 rounded">
+    <button className="flex h-full w-full max-w-sm items-center justify-center overflow-hidden rounded-lg bg-[#5CC94D] text-black shadow-lg">
+      <span className="flex h-10 w-10 items-center justify-center rounded border-2 border-white text-3xl text-white">
         +
       </span>
     </button>

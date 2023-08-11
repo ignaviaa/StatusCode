@@ -8,13 +8,13 @@ import Category from "@/components/Category";
 function Page() {
   return (
     <>
-      <div className=" min-h-screen flex flex-col md:flex-row  bg-[#171819]">
+      <div className=" flex min-h-screen flex-col bg-[#171819]  md:flex-row">
         <div className="md:w-[20%]">
           <SideBar />
         </div>
-        <div className=" w-screen h-screen flex flex-col">
-          <div className="flex items-center justify-between p-10 py-8 mx-5">
-            <span className="text-white text-[25px] font-semibold font-Poppins ">
+        <div className=" flex h-screen w-screen flex-col">
+          <div className="mx-5 flex items-center justify-between p-10 py-8">
+            <span className="font-Poppins text-[25px] font-semibold text-white ">
               Dashboard
             </span>
             <div className="flex items-center bg-[#171819]">
@@ -22,18 +22,18 @@ function Page() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 w-[76vw] h-[15vh] mx-auto mb-5 bg-[#202123] divide-x divide-[#3F4042] space-x-1 rounded p-5 font-Poppins text-gray-400 text-[15px]">
-            <div className=" justify-center flex flex-row items-center ">
+          <div className="mx-auto mb-5 grid h-[15vh] w-[76vw] grid-cols-3 space-x-1 divide-x divide-[#3F4042] rounded bg-[#202123] p-5 font-Poppins text-[15px] text-gray-400">
+            <div className=" flex flex-row items-center justify-center ">
               Amount{" "}
             </div>
-            <div className="justify-center flex flex-row items-center ">
+            <div className="flex flex-row items-center justify-center ">
               Contributors{" "}
             </div>
-            <div className="justify-center flex flex-row items-center ">
+            <div className="flex flex-row items-center justify-center ">
               Carbon Captured{" "}
             </div>
           </div>
-          <div className="grid grid-col-1 grid-flow-col mx-auto ">
+          <div className="grid-col-1 mx-auto grid grid-flow-col ">
             <div>
               <Category />
             </div>
@@ -41,12 +41,12 @@ function Page() {
               <BarChart />
             </div>
           </div>
-          <div className="flex items-center p-10 py-5 mx-5">
-            <span className="text-white text-[25px] font-semibold font-Poppins ">
+          <div className="mx-5 flex items-center p-10 py-5">
+            <span className="font-Poppins text-[25px] font-semibold text-white ">
               Projects
             </span>
           </div>
-          <div className="grid grid-cols-3 gap-10 m-auto w-[75vw] space-x mb-10">
+          <div className="space-x m-auto mb-10 grid w-[75vw] grid-cols-3 gap-10">
             <div className="w-[20vw]  ">
               <AddButton />
             </div>

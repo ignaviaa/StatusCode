@@ -4,22 +4,22 @@ import Image from "next/image";
 function Category() {
   return (
     <>
-      <div className="w-[28vw] rounded-[0.5rem] overflow-hidden shadow-lg bg-[#202123] relative h-[40vh] ">
+      <div className="relative h-[40vh] w-[28vw] overflow-hidden rounded-[0.5rem] bg-[#202123] shadow-lg ">
         <div className="px-5 py-4">
-          <span className="font-bold text-xl mb-2 text-white font-Poppins ">
+          <span className="mb-2 font-Poppins text-xl font-bold text-white ">
             Category
           </span>
           <div className="grid grid-cols-4">
             <div className="rounded">
               <Image src="/forest.jpeg" alt="forest" height={90} width={90} />
-              <p className="relative text-center bottom-[50%] font-Poppins">
+              <p className="relative bottom-[50%] text-center font-Poppins">
                 Forest
               </p>
             </div>
 
             <div>
               <Image src="/water.jpeg" alt="water" height={90} width={90} />
-              <p className="relative text-center bottom-[50%] font-Poppins">
+              <p className="relative bottom-[50%] text-center font-Poppins">
                 Water
               </p>
             </div>

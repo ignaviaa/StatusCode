@@ -26,3 +26,6 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+.wallet-adapter-button{}
