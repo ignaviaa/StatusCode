@@ -16,7 +16,7 @@ function Cards() {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 </p>
                 <div className="flex justify-end m-1">
-                    <button>Category</button>
+                    <div className="bg-[#5CC94D] px-4 rounded">Category</div>
                 </div>
             </div>
         </div>
