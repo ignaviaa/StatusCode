@@ -15,9 +15,6 @@ function Cards() {
                 <p className="text-white text-base">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 </p>
-                <div className="flex justify-end m-1">
-                    <button>Category</button>
-                </div>
             </div>
         </div>
 
