@@ -39,7 +39,7 @@ const Navbar: FC<NavbarProps> = ({
           Solution
         </p>
         <p className="cursor-pointer rounded-full bg-transparent px-4 py-2 text-base font-medium text-gray-600 hover:bg-gray-100">
-          MarketPlace
+          Market Place
         </p>
       </div>
 
