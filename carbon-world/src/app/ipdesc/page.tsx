@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import SideBar from "@/components/SideBar";
 import SearchBar from "@/components/SearchBar";
+
 import { investorDashboard } from "@/constants/dashboard";
 
 function Page() {
