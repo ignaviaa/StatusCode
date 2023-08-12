@@ -1,5 +1,5 @@
 import React from 'react';
-import Category from '@/components/Category';  
+import Category from '@/components/Category';
 import BarChart from '@/components/BarChart';
 
 function CategoryBarChartPairGroup({ data }) {
