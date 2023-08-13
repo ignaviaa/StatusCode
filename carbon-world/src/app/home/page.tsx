@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef } from 'react'
-import Homenav from '@/components/Homenav'
 import Image from 'next/image'
+import Homenav from '@/components/Homenav'
 import { Parallax, ParallaxLayer, IParallax } from '@react-spring/parallax'
 import Features from './features'
 
@@ -13,9 +13,10 @@ export default function App() {
   const parallax = useRef<IParallax>(null!)
   return (
     <>
-    <div className=' font-Poppins text-white'>
-  <Homenav />  
-  </div>
+    <div>
+      <Homenav />
+    </div>
+   
   <div className='bg-[#002C47] h-screen w-screen'>
       <Parallax ref={parallax} pages={3}>
         <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#DD817E' }} />
@@ -125,8 +126,11 @@ Tokenized for a Sustainable World!</p>
       </Parallax>
       </div>
       <div>
+
+
       <Features/>
      </div>
+     
 
 
     </>
