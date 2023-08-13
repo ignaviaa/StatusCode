@@ -68,6 +68,10 @@ function MyFormModal({onDismiss}: MyFormModalProps) {
                             <label>Carbon Captured</label>
                             <input type="text" placeholder="Carbon Captured" className="rounded p-1 text-sm mt-2 pl-3"/>
                         </div>
+
+                        <div className="flex justify-end mt-6">
+                            <button className="bg-[#5CC94D] py-2 rounded px-4"  >Save</button>
+                        </div>
                     </div>
 
                 </form>
