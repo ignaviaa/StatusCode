@@ -1,4 +1,5 @@
 import React from 'react'
+import Homenav from '@/components/Homenav';
 
 const About = () => {
   return (

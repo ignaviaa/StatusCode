@@ -1,3 +1,4 @@
+"use client"
 import SideBar from "@/components/SideBar";
 import Cards from "@/components/Cards";
 import AddButton from "@/components/AddButton";
@@ -8,7 +9,7 @@ import Category from "@/components/Category";
 function Page() {
   return (
     <>
-      <div className=" flex min-h-screen flex-col bg-[#171819]  md:flex-row">
+      <div className=" flex min-h-screen flex-col bg-[#171819]  md:flex-row overflow-x-hidden">
         <div className="md:w-[20%]">
           <SideBar />
         </div>
