@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
-// import Homenav from "@/components/Homenav";
 import Image from "next/image";
+import Homenav from "@/components/Homenav";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import Features from "./features";
 
@@ -17,7 +17,10 @@ export default function App() {
   const parallax = useRef<IParallax>(null!);
   return (
     <>
-      <div className=" font-Poppins text-white">{/* <Homenav /> */}</div>
+      <div>
+        <Homenav />
+      </div>
+
       <div className="h-screen w-screen bg-[#002C47]">
         <Parallax ref={parallax} pages={3}>
           <ParallaxLayer
@@ -213,8 +216,11 @@ export default function App() {
           </ParallaxLayer>
         </Parallax>
       </div>
+
       <div>
-        <Features />
+        <div className="pb-10 pt-10">
+          <Features />
+        </div>
       </div>
     </>
   );

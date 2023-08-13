@@ -14,15 +14,15 @@ export const ngoDashboard = [
         href: "/transaction",
     },
     { icon: <SlGraph />, label: "Analytics", href: "/analytics" },
-    { icon: <BiLogOut />, label: "Log Out", href: "/home" },
+    // { icon: <BiLogOut />, label: "Log Out", href: "/home" },
 ]
 
 export const investorDashboard = [
-    { icon: <BiSolidDashboard />, label: "Dashboard", href: "/dashboard" },
+    { icon: <BiSolidDashboard />, label: "Dashboard", href: "/investors" },
     {
         icon: <IoBagHandle />,
         label: "Marketplace",
-        href: "/marketplace",
+        href: "/investorsMarketplace",
     },
     {
         icon: <AiOutlineTransaction />,
@@ -30,5 +30,5 @@ export const investorDashboard = [
         href: "/transaction",
     },
     { icon: <MdDiamond />, label: "Rewards", href: "/rewards" },
-    { icon: <BiLogOut />, label: "Log Out", href: "/home" },
+    // { icon: <BiLogOut />, label: "Log Out", href: "/home" },
 ]

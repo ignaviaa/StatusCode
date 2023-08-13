@@ -1,10 +1,10 @@
 "use client";
 import { FC } from "react";
-import { GlobeAmericasIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { truncate } from "@/utils/string";
-import styles from "@/styles/wallet.module.css";
 import { PublicKey } from "@solana/web3.js";
+import { useRouter } from "next/navigation";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 interface NavbarProps {
@@ -20,10 +20,16 @@ const Navbar: FC<NavbarProps> = ({
   initializeUser,
   initialized,
 }) => {
+  const { push } = useRouter();
   return (
     <header className="sticky top-0 z-50 items-center border-b bg-white px-10 py-4 transition-all md:grid md:grid-cols-3 xl:px-10">
       <div>
-        <p className="cursor-pointer bg-transparent px-4 text-lg font-medium text-gray-800">
+        <p
+          className="cursor-pointer bg-transparent px-4 text-lg font-medium text-gray-800"
+          onClick={() => {
+            push("home");
+          }}
+        >
           CarbonWorld
         </p>
       </div>

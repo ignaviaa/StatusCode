@@ -1,5 +1,10 @@
 "use client";
 import Link from "next/link";
+import { PublicKey } from "@solana/web3.js";
+require("@solana/wallet-adapter-react-ui/styles.css");
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
+import { truncate } from "@/utils/string";
 
 interface NavItem {
   href: string;
@@ -7,11 +12,15 @@ interface NavItem {
   label: string;
 }
 
-interface NavItemsProps {
+interface NavItemsProps {}
+
+interface NavbarProps {
+  connected: boolean;
+  publicKey: PublicKey;
   data: NavItem[];
 }
 
-function NavItems({ data }: NavItemsProps) {
+function NavItems({ connected, publicKey, data }: NavbarProps) {
   return (
     <div className="mx-10 mt-4 flex flex-col py-8 text-[19px]">
       {data?.map((item, index) => (
@@ -24,6 +33,15 @@ function NavItems({ data }: NavItemsProps) {
           {item.label}
         </Link>
       ))}
+      <WalletMultiButton
+        startIcon={
+          <UserCircleIcon style={{ height: 32, width: 32, color: "#d0d0d1" }} />
+        }
+      >
+        <span className="text-base font-semibold text-slate-200">
+          {connected ? truncate(publicKey.toString()) : "Connect Wallet"}
+        </span>
+      </WalletMultiButton>
     </div>
   );
 }

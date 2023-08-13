@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import SideBar from "@/components/SideBar";
@@ -5,8 +6,15 @@ import SearchBar from "@/components/SearchBar";
 import MiniCards from "@/components/MiniCards";
 import Cards from "@/components/Cards";
 import { investorDashboard } from "@/constants/dashboard";
+import { useRefi } from "@/hooks/useRefi";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 function Page() {
+  const { connected, publicKey } = useWallet();
+  const { sendSol } = useRefi({ typeOfAccount: "NGO" });
+  const handleClick = async () => {
+    sendSol({ to: "9aYZU8Ed6cfHbqQNHXtjXLqPsLq1p9ft7Wv6n3vYHZFN" });
+  };
   return (
     <>
       <div className="flex min-h-screen flex-col bg-[#171819] md:flex-row">
@@ -36,14 +44,23 @@ function Page() {
                 Projects
               </div>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
-                <div>
-                  <Cards />
+                <div onClick={() => handleClick()}>
+                  <Cards
+                    name="nature ngo"
+                    desc="We are planting tress to reduce the amount of carbon captured."
+                  />
                 </div>
                 <div>
-                  <Cards />
+                  <Cards
+                    name="land ngo"
+                    desc="We are a movement who help to reduce the emissions of carbon with the help of our environment friendly method ."
+                  />
                 </div>
                 <div>
-                  <Cards />
+                  <Cards
+                    name="water ngo"
+                    desc="We are a movement who help to reduce the water pollution."
+                  />
                 </div>
               </div>
             </div>

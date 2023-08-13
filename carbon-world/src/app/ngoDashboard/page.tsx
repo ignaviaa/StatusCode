@@ -6,11 +6,41 @@ import SearchBar from "@/components/SearchBar";
 import BarChart from "@/components/BarChart";
 import Category from "@/components/Category";
 import { ngoDashboard } from "@/constants/dashboard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyFormModal from "@/components/MyFormModal";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { useRefi } from "@/hooks/useRefi";
 
 function Page() {
   const [isPopUpOpen, setIsPopUpOpen] = useState<boolean>(false);
+  const { connected, publicKey } = useWallet();
+  const [cards, setCards] = useState<any>([{}]);
+  const { findNgoProjects } = useRefi({ typeOfAccount: "NGO" });
+  // const {
+  //   sendSol,
+  //   initialized,
+  //   initializeUser,
+  //   test,
+  //   addNgoAccount,
+  //   addNgoTest,
+  //   updateNgoDashboard,
+  //   findTo,
+  // } = useRefi({
+  //   typeOfAccount,
+  // });
+
+  // const handleClick = async () => {
+  //   const x = await findNgoProjects();
+  //   setCards(x)
+  // };
+  useEffect(() => {
+    const handleClick = async () => {
+      const x = await findNgoProjects();
+      setCards(x);
+    };
+    handleClick();
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -67,12 +97,17 @@ function Page() {
             {/*<div className="w-[25vw]  ">*/}
             {/*    <Cards/>*/}
             {/*</div>*/}
-            <div className="w-[25vw]  ">
+            {/* <div className="w-[25vw]" onClick={() => handleClick()}>
               <Cards />
             </div>
             <div className="w-[25vw]  ">
               <Cards />
-            </div>
+            </div> */}
+            {cards?.map((value: any, index: any) => (
+              <div key={index}>
+                <Cards name={value.nameOfProject} desc={value.description} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

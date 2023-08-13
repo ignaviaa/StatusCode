@@ -1,3 +1,4 @@
+"use client";
 import * as anchor from "@project-serum/anchor";
 import { useEffect, useMemo, useState } from "react";
 import { REFI_PROGRAM_PUBKEY } from "@/constants/index";
@@ -37,19 +38,17 @@ interface ProjectProps {
   carbonCaptured: number;
 }
 
-const value = new anchor.BN(1);
+const value = new anchor.BN(2);
 
 export const useRefi = ({ typeOfAccount }: RefiProps) => {
   const { connection } = useConnection();
   const anchorWallet = useAnchorWallet();
   const { publicKey } = useWallet();
 
-  const updateNgoName = useDataStore((state) => state.updateNgoName);
-
   const [initialized, setInitialized] = useState(false);
   const [transactionPending, setTransactionPending] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [projectsMade, setProjectsMade] = useState(0);
+  const [projectsMade, setProjectsMade] = useState(1);
 
   const program = useMemo(() => {
     if (anchorWallet) {
@@ -90,6 +89,11 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
             const profileAccount = await program.account.ngoProfile.fetch(
               profilePda,
             );
+            // const data = await program.account.ngoProfile.all([
+            //   authorFilter(publicKey.toString()),
+            // ]);
+            // console.log(profileAccount.projectsMade);
+            setProjectsMade(profileAccount.projectsMade);
 
             if (profileAccount) {
               setInitialized(true);
@@ -157,6 +161,66 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
         console.log(error);
       } finally {
         setTransactionPending(false);
+      }
+    }
+  };
+
+  const projectTest = async ({
+    idx,
+    nameOfProject,
+    startYear,
+    projectLead,
+    location,
+    category,
+    description,
+    fundingRaised,
+    projectImage,
+    carbonCaptured,
+  }: ProjectProps) => {
+    console.log(idx);
+    if (program && publicKey) {
+      // console.log("hi");
+      setTransactionPending(true);
+      setLoading(true);
+      try {
+        const [profilePda] = findProgramAddressSync(
+          [utf8.encode("NGO_STATE"), publicKey.toBuffer()],
+          program.programId,
+        );
+        console.log(profilePda.toBase58());
+        const [ngoPda] = findProgramAddressSync(
+          [
+            utf8.encode("NEWPROJECT_STATE"),
+            publicKey.toBuffer(),
+            Uint8Array.from([projectsMade]),
+          ],
+          program.programId,
+        );
+        await program.methods
+          .addProject(
+            idx,
+            nameOfProject,
+            startYear,
+            projectLead,
+            location,
+            category,
+            description,
+            fundingRaised,
+            projectImage,
+            carbonCaptured,
+          )
+          .accounts({
+            ngoProfile: profilePda,
+            ngoProject: ngoPda,
+            authority: publicKey,
+            systemProgram: SystemProgram.programId,
+          })
+          .rpc();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setTransactionPending(false);
+        setLoading(false);
       }
     }
   };
@@ -268,7 +332,7 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
 
   const test = ({ hi }: { hi: string }) => {
     console.log(hi);
-    updateNgoName("by");
+    // updateNgoName("by");
   };
 
   const addNgoTest = async (typeOfAccount: string) => {
@@ -283,7 +347,6 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
         const data = await program.account.ngoAccount.all([
           authorFilter(publicKey.toString()),
         ]);
-        console.log(data);
         return data;
       } else if (typeOfAccount === "INVESTOR") {
         const [profilePda] = findProgramAddressSync(
@@ -356,10 +419,20 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
         authorFilter(publicKey.toString()),
       ]);
       // console.log(data[0].account.nameOfNgo);
-      updateNgoName(data[0].account.nameOfNgo);
+      // updateNgoName(data[0].account.nameOfNgo);
       // updateNgoName("bye");
     }
   };
+
+  const findNgoProjects = async () => {
+    if (program && publicKey) {
+      const data = await program.account.ngoProject.all([
+        authorFilter(publicKey.toString()),
+      ]);
+      return data.map((value) => value.account);
+    }
+  };
+
   return {
     initialized,
     initializeUser,
@@ -370,5 +443,7 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
     addNgoTest,
     updateNgoDashboard,
     findTo,
+    projectTest,
+    findNgoProjects,
   };
 };

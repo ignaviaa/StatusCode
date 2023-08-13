@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-function Cards() {
+function Cards({ name, desc }: { name: any; desc: any }) {
   return (
     <>
       <div className="max-w-sm overflow-hidden rounded-lg bg-[#202123] shadow-lg">
@@ -15,12 +15,8 @@ function Cards() {
           />
         </div>
         <div className="px-5 py-4">
-          <div className="mb-2 text-xl font-bold text-white">
-            The Coldest Sunset
-          </div>
-          <p className="text-base text-white">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </p>
+          <div className="mb-2 text-xl font-bold text-white">{name}</div>
+          <p className="text-base text-white">{desc}</p>
         </div>
       </div>
     </>

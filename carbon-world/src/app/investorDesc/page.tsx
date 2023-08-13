@@ -36,15 +36,8 @@ function Page() {
                 Project 1
               </h1>
             </div>
-            {/* Lower grid */}
-            {/*<div className="md:flex md:flex-col flex-1 p-10 mx-5">*/}
-            {/*    <div className="mb-4 text-white text-[20px] font-semibold font-Poppins">*/}
-            {/*        Projects*/}
-            {/*    </div>*/}
 
-            {/*</div>*/}
             <div className="mx-5 grid flex-grow grid-cols-1 gap-4 overflow-y-auto p-10">
-              {/* Rounded container */}
               <div className="h-[500px] w-full overflow-hidden rounded-lg bg-[#2C2D2E]">
                 <div className="m-8">Description:</div>
                 <div className="m-8">Project Lead:</div>
