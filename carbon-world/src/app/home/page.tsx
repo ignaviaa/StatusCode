@@ -125,10 +125,12 @@ Tokenized for a Sustainable World!</p>
         </ParallaxLayer>
       </Parallax>
       </div>
+  
       <div>
 
-
+<div className='pt-10 pb-10'>
       <Features/>
+      </div>
      </div>
      
 
