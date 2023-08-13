@@ -1,24 +1,33 @@
+"use client";
 import SideBar from "@/components/SideBar";
 import Cards from "@/components/Cards";
 import AddButton from "@/components/AddButton";
 import SearchBar from "@/components/SearchBar";
 import BarChart from "@/components/BarChart";
 import Category from "@/components/Category";
+import { ngoDashboard } from "@/constants/dashboard";
+import { useState } from "react";
+import MyFormModal from "@/components/MyFormModal";
 
 function Page() {
+  const [isPopUpOpen, setIsPopUpOpen] = useState<boolean>(false);
+
   return (
     <>
       <div className=" flex min-h-screen flex-col bg-[#171819]  md:flex-row">
         <div className="md:w-[20%]">
-          <SideBar />
+          <SideBar data={ngoDashboard} />
         </div>
-        <div className=" flex h-screen w-screen flex-col">
-          <div className="mx-5 flex items-center justify-between p-10 py-8">
+        <div className=" flex h-screen w-screen flex-col overflow-x-hidden">
+          <div className="mx-5 flex items-center justify-between p-10 py-8 ">
             <span className="font-Poppins text-[25px] font-semibold text-white ">
               Dashboard
             </span>
             <div className="flex items-center bg-[#171819]">
-              <SearchBar placeholderDetails="Search for project" width="20vw" />
+              <SearchBar
+                placeholderDetails="Search listed project"
+                width="30vw"
+              />
             </div>
           </div>
 
@@ -46,14 +55,22 @@ function Page() {
               Projects
             </span>
           </div>
-          <div className="space-x m-auto mb-10 grid w-[75vw] grid-cols-3 gap-10">
-            <div className="w-[20vw]  ">
+          <div className="m-auto mb-10 grid w-[75vw] grid-cols-3 gap-10">
+            <div onClick={() => setIsPopUpOpen(true)} className="w-[25vw] ">
               <AddButton />
             </div>
-            <div className="w-[20vw]  ">
+
+            {isPopUpOpen && (
+              <MyFormModal onDismiss={() => setIsPopUpOpen(false)} />
+            )}
+
+            {/*<div className="w-[25vw]  ">*/}
+            {/*    <Cards/>*/}
+            {/*</div>*/}
+            <div className="w-[25vw]  ">
               <Cards />
             </div>
-            <div className="w-[20vw] ">
+            <div className="w-[25vw]  ">
               <Cards />
             </div>
           </div>

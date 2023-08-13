@@ -5,6 +5,7 @@ import { useRefi } from "@/hooks/useRefi";
 import { PublicKey } from "@solana/web3.js";
 import { FC, useEffect, useState } from "react";
 import { clsx } from "clsx";
+import { useRouter } from "next/navigation";
 
 interface ExtraDetails {
   [index: number]: string;
@@ -19,18 +20,48 @@ interface LoginProps {
 const LoginPage: FC<LoginProps> = ({ name, extraDetails, typeOfAccount }) => {
   const { connected, publicKey } = useWallet();
   // const x = "NGO";
-  const { initialized, initializeUser, addNgoAccount, test } = useRefi({
-    typeOfAccount,
-  });
+  const { initialized, initializeUser, addNgoAccount, test, addNgoTest } =
+    useRefi({
+      typeOfAccount,
+    });
 
   const [disableElement, setdisableElement] = useState<boolean>();
 
   const [placeholderOne, setPlaceholderOne] = useState<string>("");
   const [placeholderTwo, setPlaceholderTwo] = useState<string>("");
 
+  const { push } = useRouter();
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    console.log(typeOfAccount);
     setdisableElement(initialized && connected);
   }, [initialized, connected]);
+
+  useEffect(() => {
+    const testFunc = async () => {
+      const x = await addNgoTest(typeOfAccount);
+      if (x === undefined) {
+      } else {
+        if (x.length !== 0) {
+          if (typeOfAccount === "NGO") push("ngoDashboard");
+          else if (typeOfAccount === "INVESTOR") push("investorDesc");
+        }
+      }
+    };
+    testFunc();
+  }, [addNgoTest, push]);
+
+  const handleClick = () => {
+    addNgoAccount({
+      name_of_ngo: placeholderOne,
+      date_of_ngo_started: placeholderTwo,
+      typeOfAccount: typeOfAccount,
+    });
+    if (typeOfAccount === "NGO") push("ngoDashboard");
+    else if (typeOfAccount === "INVESTOR") push("investorDesc");
+  };
+
   return (
     <>
       <Navbar
@@ -93,12 +124,7 @@ const LoginPage: FC<LoginProps> = ({ name, extraDetails, typeOfAccount }) => {
                   )}
                   type="button"
                   disabled={!disableElement}
-                  onClick={() =>
-                    addNgoAccount({
-                      name_of_ngo: placeholderOne,
-                      date_of_ngo_started: placeholderTwo,
-                    })
-                  }
+                  onClick={handleClick}
                 >
                   Sign Up
                 </button>

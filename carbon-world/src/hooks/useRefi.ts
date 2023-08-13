@@ -2,7 +2,7 @@ import * as anchor from "@project-serum/anchor";
 import { useEffect, useMemo, useState } from "react";
 import { REFI_PROGRAM_PUBKEY } from "@/constants/index";
 import refiIDL from "@/constants/refi.json";
-import { SystemProgram } from "@solana/web3.js";
+import { PublicKey, SystemProgram } from "@solana/web3.js";
 import { utf8 } from "@project-serum/anchor/dist/cjs/utils/bytes";
 import { findProgramAddressSync } from "@project-serum/anchor/dist/cjs/utils/pubkey";
 import {
@@ -11,10 +11,8 @@ import {
   useWallet,
 } from "@solana/wallet-adapter-react";
 import { authorFilter } from "../utils";
-import { PublicKey } from "@solana/web3.js";
-import { Console } from "console";
-// import { set } from 'date-fns'
-// import { tr } from 'date-fns/locale'
+import { getAssociatedTokenAddress } from "@solana/spl-token";
+import { useDataStore } from "@/utils/dataStore";
 
 interface RefiProps {
   typeOfAccount: string;
@@ -23,6 +21,7 @@ interface RefiProps {
 interface NgoLoginProps {
   name_of_ngo: string;
   date_of_ngo_started: string;
+  typeOfAccount: string;
 }
 
 interface ProjectProps {
@@ -44,6 +43,8 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
   const { connection } = useConnection();
   const anchorWallet = useAnchorWallet();
   const { publicKey } = useWallet();
+
+  const updateNgoName = useDataStore((state) => state.updateNgoName);
 
   const [initialized, setInitialized] = useState(false);
   const [transactionPending, setTransactionPending] = useState(false);
@@ -107,6 +108,14 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
     //eslint-disable-next-line
   }, [publicKey, program, transactionPending]);
 
+  const x = new PublicKey("9aYZU8Ed6cfHbqQNHXtjXLqPsLq1p9ft7Wv6n3vYHZFN");
+  const y = new PublicKey("91znXXrPcYGwQMS3EpBfsGQtXWYMHkrNRBNyrGtsLFTf");
+
+  const findTo = async () => {
+    const getTo = await getAssociatedTokenAddress(x, y);
+    console.log(getTo.toBase58());
+  };
+
   // console.log(typeOfAccount);
   const initializeUser = async () => {
     if (program && publicKey) {
@@ -148,38 +157,6 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
         console.log(error);
       } finally {
         setTransactionPending(false);
-      }
-    }
-  };
-
-  const addNgoAccount = async ({
-    name_of_ngo,
-    date_of_ngo_started,
-  }: NgoLoginProps) => {
-    console.log({ name_of_ngo, date_of_ngo_started });
-    if (program && publicKey) {
-      setTransactionPending(true);
-      setLoading(true);
-      console.log({ name_of_ngo, date_of_ngo_started });
-      try {
-        const [ngoPda] = findProgramAddressSync(
-          [utf8.encode("NAME_STATE"), publicKey.toBuffer()],
-          program.programId,
-        );
-
-        await program.methods
-          .addNgo(name_of_ngo, date_of_ngo_started)
-          .accounts({
-            ngoAccount: ngoPda,
-            authority: publicKey,
-            systemProgram: SystemProgram.programId,
-          })
-          .rpc();
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setTransactionPending(false);
-        setLoading(false);
       }
     }
   };
@@ -290,34 +267,99 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
   };
 
   const test = ({ hi }: { hi: string }) => {
-    console.log("hi");
+    console.log(hi);
+    updateNgoName("by");
   };
 
-  const addNgoTest = async () => {
+  const addNgoTest = async (typeOfAccount: string) => {
     if (program && publicKey) {
       setTransactionPending(true);
       setLoading(true);
-      const [profilePda] = findProgramAddressSync(
-        [utf8.encode("NEWPROJECT_STATE"), publicKey.toBuffer()],
-        program.programId,
-      );
-      // try {
-
-      //   console.log(profilePda.toString());
-      // } catch (error) {
-      //   console.error(error);
-      // } finally {
-      //   setTransactionPending(false);
-      //   setLoading(false);
-      // }
-      const data = await program.account.ngoAccount.all([
-        authorFilter(publicKey.toString()),
-      ]);
-      console.log(data);
-      return data;
+      if (typeOfAccount === "NGO") {
+        const [profilePda] = findProgramAddressSync(
+          [utf8.encode("NEWPROJECT_STATE"), publicKey.toBuffer()],
+          program.programId,
+        );
+        const data = await program.account.ngoAccount.all([
+          authorFilter(publicKey.toString()),
+        ]);
+        console.log(data);
+        return data;
+      } else if (typeOfAccount === "INVESTOR") {
+        const [profilePda] = findProgramAddressSync(
+          [utf8.encode("INVEST_STATE"), publicKey.toBuffer()],
+          program.programId,
+        );
+        const data = await program.account.investorAccount.all([
+          authorFilter(publicKey.toString()),
+        ]);
+        console.log(data);
+        return data;
+      }
     }
   };
 
+  const addNgoAccount = async ({
+    name_of_ngo,
+    date_of_ngo_started,
+    typeOfAccount,
+  }: NgoLoginProps) => {
+    console.log({ name_of_ngo, date_of_ngo_started });
+    if (program && publicKey) {
+      setTransactionPending(true);
+      setLoading(true);
+      console.log({ name_of_ngo, date_of_ngo_started });
+      try {
+        if (typeOfAccount === "NGO") {
+          const [ngoPda] = findProgramAddressSync(
+            [utf8.encode("NAME_STATE"), publicKey.toBuffer()],
+            program.programId,
+          );
+
+          await program.methods
+            .addNgo(name_of_ngo, date_of_ngo_started)
+            .accounts({
+              ngoAccount: ngoPda,
+              authority: publicKey,
+              systemProgram: SystemProgram.programId,
+            })
+            .rpc();
+        } else if (typeOfAccount === "INVESTOR") {
+          const [investorPda] = findProgramAddressSync(
+            [utf8.encode("INVEST_STATE"), publicKey.toBuffer()],
+            program.programId,
+          );
+
+          await program.methods
+            .addInvestor(name_of_ngo, date_of_ngo_started)
+            .accounts({
+              investorAccount: investorPda,
+              authority: publicKey,
+              systemProgram: SystemProgram.programId,
+            })
+            .rpc();
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setTransactionPending(false);
+        setLoading(false);
+      }
+    }
+  };
+
+  const updateNgoDashboard = async () => {
+    if (program && publicKey) {
+      setTransactionPending(true);
+      setLoading(true);
+      const data = await program.account.ngoAccount.all([
+        authorFilter(publicKey.toString()),
+      ]);
+      // console.log(data[0].account.nameOfNgo);
+      updateNgoName(data[0].account.nameOfNgo);
+      // updateNgoName("bye");
+    }
+  };
   return {
     initialized,
     initializeUser,
@@ -326,5 +368,7 @@ export const useRefi = ({ typeOfAccount }: RefiProps) => {
     addNgoAccount,
     test,
     addNgoTest,
+    updateNgoDashboard,
+    findTo,
   };
 };
