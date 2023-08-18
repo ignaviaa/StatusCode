@@ -25,10 +25,10 @@ const Navbar: FC<NavbarProps> = ({
     <header className="sticky top-0 z-50 items-center border-b bg-white px-10 py-4 transition-all md:grid md:grid-cols-3 xl:px-10 drop-shadow-2xl">
       <div>
         <p className="cursor-pointer bg-transparent px-4 text-lg font-medium text-gray-800">
-          CarbonWorld
+         EcoToken
         </p>
       </div>
-
+{/* 
       <div className="flex flex-1 px-6 transition-all duration-300 xl:justify-center">
        <p className="cursor-pointer rounded-full bg-transparent px-4 py-2 text-base font-medium text-gray-600 hover:bg-gray-100">
         </p>
@@ -42,7 +42,7 @@ const Navbar: FC<NavbarProps> = ({
           MarketPlace
   </p>
   
-      </div> 
+      </div>  */}
 
       <div className="flex items-center justify-end">
         {initialized ? (

@@ -10,7 +10,6 @@ function page(){
         <div className=' w-screen'>
             <Image src="/biomass.png" width={500} height={500} alt="" className='w-screen h-[30vh] bg-cover'/>
             <h1 className='relative ml-10 font-Poppins text-4xl mb-10 mt-10'>Project 1</h1>
-            {/* <Catediv /> */} 
 
         </div>
         <div className="grid grid-cols-2 gap-2 mx-5 mt-5">

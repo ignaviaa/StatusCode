@@ -11,25 +11,25 @@ function Category() {
           </span>
           <div className="grid grid-cols-4">
             <div className="rounded">
-              <Image src="/forest.jpeg" alt="forest" height={90} width={90} />
+              <Image src="/forest.jpeg" alt="forest" height={500} width={500}  className="h-[32vh]"/>
               <p className="relative bottom-[50%] text-center font-Poppins">
                 Forest
               </p>
             </div>
 
             <div>
-              <Image src="/water.jpeg" alt="water" height={90} width={90} />
+              <Image src="/water.jpeg" alt="water" height={500} width={500} className="h-[32vh]"/>
               <p className="relative bottom-[50%] text-center font-Poppins">
                 Water
               </p>
             </div>
             <div>
-              <Image src="/wind.jpeg" alt="wind" height={90} width={90} />
-              <p className="relative text-center font-Poppins">Wind</p>
+              <Image src="/wind.jpeg" alt="wind" height={500} width={500} className="h-[32vh]" />
+              <p className="relative text-center font-Poppins bottom-[50%]">Wind</p>
             </div>
             <div>
-              <Image src="/biomass.png" alt="biomass" height={90} width={90} />
-              <p className="relative text-center font-Poppins">Biomass</p>
+              <Image src="/biomass.png" alt="biomass" height={500} width={500} className="h-[32vh]" />
+              <p className="relative text-center font-Poppins bottom-[50%]">Biomass</p>
             </div>
           </div>
         </div>
